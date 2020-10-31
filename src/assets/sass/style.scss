@@ -1,6 +1,16 @@
 @import './includes/colors';
 @import './includes/utils';
 
+@font-face {
+  font-family: 'TheGwatmey';
+  src: url('../fonts/TheGwathmey.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'EBGaramondItalic';
+  src: url('../fonts/EBGaramond-Italic.woff') format('woff');
+}
+
 *,
 *::before,
 *::after {
