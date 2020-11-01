@@ -1,13 +1,15 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { BrowserRouter as Router } from 'react-router-dom';
 import App from './App';
 
-ReactDOM.render(
-  <React.StrictMode>
+const app = (
+  <Router>
     <App />
-  </React.StrictMode>,
-  document.getElementById('root')
+  </Router>
 );
+
+ReactDOM.render(app, document.getElementById('root'));
 
 // For development purpose
 if (module.hot) {
