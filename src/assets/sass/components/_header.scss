@@ -1,5 +1,5 @@
 .header {
-  padding: 30px 10px;
+  padding: 30px 20px;
 
   &-logo {
     font-family: 'TheGwatmey';
@@ -13,5 +13,16 @@
 
   &-divider {
     border-color: $teal;
+  }
+
+  &-auth {
+    .btn {
+      font-size: 1.4rem;
+      width: 60px;
+
+      a {
+        text-decoration: none;
+      }
+    }
   }
 }

@@ -31,7 +31,7 @@ p {
 }
 
 .header {
-  padding: 30px 10px;
+  padding: 30px 20px;
 }
 .header-logo {
   font-family: "TheGwatmey";
@@ -43,6 +43,13 @@ p {
 }
 .header-divider {
   border-color: #868e96;
+}
+.header-auth .btn {
+  font-size: 1.4rem;
+  width: 60px;
+}
+.header-auth .btn a {
+  text-decoration: none;
 }
 
 @font-face {
