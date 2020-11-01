@@ -30,6 +30,15 @@ p {
   font-size: 1.6rem;
 }
 
+span {
+  font-size: 1.3rem;
+}
+
+article span {
+  font-family: "EBGaramondItalic";
+  color: #ad8302;
+}
+
 .header {
   padding: 30px 20px;
 }
@@ -52,6 +61,66 @@ p {
   text-decoration: none;
 }
 
+.main {
+  width: 90%;
+  margin: auto;
+  margin-top: 10px;
+}
+
+.featured-header {
+  display: grid;
+  grid-template-columns: 1fr 400px;
+  gap: 50px;
+  align-items: middle;
+}
+.featured-header-article {
+  width: 90%;
+  margin: auto;
+}
+.featured-header-article-cover {
+  display: inline-block;
+  width: 100%;
+  height: 400px;
+  object-fit: cover;
+}
+.featured-header-aside {
+  cursor: pointer;
+}
+.featured-header-aside-card:not(:last-child) {
+  margin-bottom: 20px;
+}
+.featured-header-aside img {
+  width: 100%;
+  height: 250px;
+  object-fit: cover;
+}
+.featured-header-aside p {
+  margin: 0;
+}
+
+@media (max-width: 1000px) {
+  .featured-header {
+    grid-template-columns: 1fr;
+  }
+  .featured-header-article {
+    width: 100%;
+  }
+  .featured-header-aside {
+    cursor: pointer;
+    display: grid;
+    gap: 30px;
+    grid-template-columns: 1fr 1fr;
+  }
+}
+@media (max-width: 600px) {
+  .featured-header-aside {
+    gap: 30px;
+    grid-template-columns: 1fr;
+  }
+  .featured-header-aside-card:not(:last-child) {
+    margin-bottom: 0;
+  }
+}
 @font-face {
   font-family: "TheGwatmey";
   src: url("../fonts/TheGwathmey.woff") format("woff");

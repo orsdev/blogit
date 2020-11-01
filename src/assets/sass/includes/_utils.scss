@@ -29,3 +29,14 @@ h6 {
 p {
   font-size: 1.6rem;
 }
+
+span {
+  font-size: 1.3rem;
+}
+
+article {
+  span {
+    font-family: 'EBGaramondItalic';
+    color: darken($yellow, 20%);
+  }
+}
