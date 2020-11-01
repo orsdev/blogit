@@ -1,3 +1,50 @@
+.text-center {
+  text-align: center;
+}
+
+h1 {
+  font-size: 5rem;
+}
+
+h2 {
+  font-size: 4.5rem;
+}
+
+h3 {
+  font-size: 4rem;
+}
+
+h4 {
+  font-size: 3.5rem;
+}
+
+h5 {
+  font-size: 3rem;
+}
+
+h6 {
+  font-size: 2.5rem;
+}
+
+p {
+  font-size: 1.6rem;
+}
+
+.header {
+  padding: 30px 10px;
+}
+.header-logo {
+  font-family: "TheGwatmey";
+  margin-bottom: 20px;
+}
+.header-time {
+  font-family: "EBGaramondItalic";
+  color: #fa5252;
+}
+.header-divider {
+  border-color: #868e96;
+}
+
 @font-face {
   font-family: "TheGwatmey";
   src: url("../fonts/TheGwathmey.woff") format("woff");

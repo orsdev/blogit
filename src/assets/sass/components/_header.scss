@@ -1,0 +1,17 @@
+.header {
+  padding: 30px 10px;
+
+  &-logo {
+    font-family: 'TheGwatmey';
+    margin-bottom: 20px;
+  }
+
+  &-time {
+    font-family: 'EBGaramondItalic';
+    color: $brown;
+  }
+
+  &-divider {
+    border-color: $teal;
+  }
+}
