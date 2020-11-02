@@ -200,6 +200,54 @@ article span {
     width: 95%;
   }
 }
+.signup {
+  padding: 5px;
+  overflow-x: hidden;
+}
+.signup-body {
+  width: 100%;
+  margin-top: 10px;
+  text-align: left;
+}
+.signup h6 {
+  width: 100%;
+  margin-bottom: 20px;
+}
+.signup-logo {
+  padding: 20px;
+  display: inline-block;
+  font-size: 4.5rem;
+  height: 110px;
+  font-family: "TheGwatmey";
+  color: #000;
+}
+.signup form {
+  width: 400px;
+  margin: auto;
+}
+.signup form label {
+  width: 100%;
+  display: inline-block;
+  margin: 0;
+  padding: 0;
+}
+.signup form .ant-row {
+  flex-flow: column;
+}
+.signup form input {
+  height: 40px;
+}
+.signup form .ant-col {
+  text-align: left;
+  margin: 0;
+  padding: 0;
+}
+
+@media (max-width: 500px) {
+  .signup form {
+    width: 95%;
+  }
+}
 @font-face {
   font-family: "TheGwatmey";
   src: url("../fonts/TheGwathmey.woff") format("woff");
