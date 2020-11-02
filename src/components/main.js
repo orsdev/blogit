@@ -1,11 +1,12 @@
 import React from 'react';
+import BlogCards from './blogCards';
 import Featured from './featured';
 
 function Main() {
   return (
-    <main className="main">
+    <main className="main mb-5">
       <Featured />
-      <div className="main-body">Body</div>
+      <BlogCards />
     </main>
   );
 }

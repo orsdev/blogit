@@ -1,6 +1,11 @@
 .main {
-  // outline: 2px solid green;
   width: 90%;
   margin: auto;
   margin-top: 10px;
+}
+
+@media (max-width: 500px) {
+  .main {
+    width: 95%;
+  }
 }
