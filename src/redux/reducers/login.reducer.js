@@ -5,7 +5,7 @@ const initialState = {
   error: null
 };
 
-const userReducer = (state = initialState, action) => {
+const loginReducer = (state = initialState, action) => {
   switch (action.type) {
     case actionTypes.LOGIN_USER:
       return {
@@ -24,4 +24,4 @@ const userReducer = (state = initialState, action) => {
   }
 };
 
-export default userReducer;
+export default loginReducer;
