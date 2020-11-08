@@ -42,3 +42,7 @@ export const login = (userData) => {
     }
   };
 };
+
+export const logOut = () => ({
+  type: actionTypes.LOGOUT_USER
+});
