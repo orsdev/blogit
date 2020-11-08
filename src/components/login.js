@@ -6,8 +6,9 @@ import jwt_decode from 'jwt-decode';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { login } from '../redux/actions/login.action';
+import { setUser } from '../redux/actions/user.action';
 
-const Login = ({ token, error, onLogin }) => {
+const Login = ({ token, error, user, onLogin, onSetUser, history }) => {
   const [disableButton, setDisableButton] = useState(false);
   const [buttonLoading, setButtonLoading] = useState(false);
 
@@ -30,7 +31,15 @@ const Login = ({ token, error, onLogin }) => {
       cookie.save('token', token, { path: '/' }, expires);
 
       const decoded = jwt_decode(token);
+
+      if (decoded) {
+        // call dispatch function
+        onSetUser(decoded);
+        // redirect to home
+        history.push('/');
+      }
     }
+    // eslint-disable-next-line
   }, [token]);
 
   useEffect(() => {
@@ -129,17 +138,21 @@ const Login = ({ token, error, onLogin }) => {
 Login.propTypes = {
   token: PropTypes.string,
   error: PropTypes.any,
-  onLogin: PropTypes.func.isRequired
+  user: PropTypes.any,
+  onLogin: PropTypes.func.isRequired,
+  onSetUser: PropTypes.func.isRequired
 };
 
 const mapStateToProps = (state) => ({
   token: state.login.token,
-  error: state.login.error
+  error: state.login.error,
+  user: state.user.user
 });
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    onLogin: (email, password) => dispatch(login(email, password))
+    onLogin: (email, password) => dispatch(login(email, password)),
+    onSetUser: (user) => dispatch(setUser(user))
   };
 };
 
