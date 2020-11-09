@@ -3,9 +3,6 @@ import { Skeleton } from 'antd';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { getFeaturedPosts } from '../redux/actions/featured.action';
-import Nature from '../assets/images/nature.jpg';
-import Mood from '../assets/images/mood.jpg';
-import London from '../assets/images/london.jpg';
 
 function Featured({ posts, error, onGetFeaturedPosts }) {
   useEffect(() => {
@@ -105,11 +102,6 @@ function Featured({ posts, error, onGetFeaturedPosts }) {
                 <i className="fa fa-comment-o pr-2" aria-hidden="true"></i>
                 <b>12</b>
               </span>
-              <img
-                src={Nature}
-                alt="Article Cover"
-                className="featured-header-article-cover my-3"
-              />
               <p className="featured-header-article-text">
                 Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quam,
                 ex voluptates repellat nihil, inventore praesentium a non
@@ -127,7 +119,6 @@ function Featured({ posts, error, onGetFeaturedPosts }) {
           <aside className="featured-header-aside">
             <Skeleton active={true} loading={true}>
               <article className="featured-header-aside-card">
-                <img src={Mood} alt="Article Cover" />
                 <p className="feature-header-aside-card-text">
                   Lorem ipsum dolor sit, amet consectetur adipisicing elit.
                   Nemo, ducimus...
@@ -148,7 +139,6 @@ function Featured({ posts, error, onGetFeaturedPosts }) {
             </Skeleton>
             <Skeleton active={true} loading={true}>
               <article className="featured-header-aside-card">
-                <img src={London} alt="Article Cover" />
                 <p className="feature-header-aside-card-text">
                   Lorem ipsum dolor sit, amet consectetur adipisicing elit.
                   Nemo, ducimus...
