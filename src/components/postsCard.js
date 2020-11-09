@@ -4,7 +4,7 @@ import Moped from '../assets/images/moped.jpg';
 import Justin from '../assets/images/justin.jpg';
 import Bruno from '../assets/images/bruno.jpg';
 
-function BlogCards() {
+function postsCard() {
   return (
     <section className="blogCards py-3">
       <h5 className="blogCards-title p-2">Must Read</h5>
@@ -164,4 +164,4 @@ function BlogCards() {
   );
 }
 
-export default BlogCards;
+export default postsCard;

@@ -1,5 +1,5 @@
 import React from 'react';
-import BlogCards from './blogCards';
+import PostsCard from './postsCard';
 import Featured from './featured';
 import Pagination from './pagination';
 
@@ -7,7 +7,7 @@ function Main() {
   return (
     <main className="main mb-5">
       <Featured />
-      <BlogCards />
+      <PostsCard />
       <Pagination />
     </main>
   );
