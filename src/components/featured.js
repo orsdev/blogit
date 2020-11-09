@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { Skeleton } from 'antd';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import { getFeaturedPosts } from '../redux/actions/featured.action';
 
 function Featured({ posts, error, onGetFeaturedPosts }) {
@@ -16,11 +17,42 @@ function Featured({ posts, error, onGetFeaturedPosts }) {
         <header className="featured-header px-2">
           {posts.slice(0, 1).map((post) => {
             return (
-              <>
-                <article key={post._id} className="featured-header-article">
-                  <h5 className="featured-header-article-title">
-                    {post.title}
-                  </h5>
+              <article key={post._id} className="featured-header-article">
+                <h5 className="featured-header-article-title">{post.title}</h5>
+                <span className="featured-header-article-author">
+                  {post.user.username} -
+                </span>
+                <span className="featured-header-article-date">
+                  {new Date(post.createdAt).toDateString()}
+                </span>
+                <span className="featured-header-article-comment ml-3">
+                  <b>
+                    <i className="fa fa-comment-o pr-1" aria-hidden="true"></i>
+                  </b>
+                  <b>{post.comments.length}</b>
+                </span>
+                <img
+                  src={post.coverImage}
+                  alt="Article Cover"
+                  className="featured-header-article-cover my-3"
+                />
+                <p className="featured-header-article-text">{post.body}</p>
+                <Link
+                  to="/post/:12334"
+                  className="btn btn-danger btn-lg rounded-0">
+                  Read More
+                </Link>
+              </article>
+            );
+          })}
+          <aside className="featured-header-aside">
+            {posts.slice(1).map((post) => {
+              return (
+                <article key={post._id} className="featured-header-aside-card">
+                  <img src={post.coverImage} alt="Article Cover" />
+                  <p className="feature-header-aside-card-text mt-1">
+                    {post.body}
+                  </p>
                   <span className="featured-header-article-author">
                     {post.user.username} -
                   </span>
@@ -35,48 +67,7 @@ function Featured({ posts, error, onGetFeaturedPosts }) {
                     </b>
                     <b>{post.comments.length}</b>
                   </span>
-                  <img
-                    src={post.coverImage}
-                    alt="Article Cover"
-                    className="featured-header-article-cover my-3"
-                  />
-                  <p className="featured-header-article-text">{post.body}</p>
-                  <Link
-                    to="/post/:12334"
-                    className="btn btn-danger btn-lg rounded-0">
-                    Read More
-                  </Link>
                 </article>
-              </>
-            );
-          })}
-          <aside className="featured-header-aside">
-            {posts.slice(1).map((post) => {
-              return (
-                <>
-                  <article
-                    key={post._id}
-                    className="featured-header-aside-card">
-                    <img src={post.coverImage} alt="Article Cover" />
-                    <p className="feature-header-aside-card-text mt-1">
-                      {post.body}
-                    </p>
-                    <span className="featured-header-article-author">
-                      {post.user.username} -
-                    </span>
-                    <span className="featured-header-article-date">
-                      {new Date(post.createdAt).toDateString()}
-                    </span>
-                    <span className="featured-header-article-comment ml-3">
-                      <b>
-                        <i
-                          className="fa fa-comment-o pr-1"
-                          aria-hidden="true"></i>
-                      </b>
-                      <b>{post.comments.length}</b>
-                    </span>
-                  </article>
-                </>
               );
             })}
           </aside>
@@ -165,6 +156,12 @@ function Featured({ posts, error, onGetFeaturedPosts }) {
     </section>
   );
 }
+
+Featured.propTypes = {
+  posts: PropTypes.any,
+  error: PropTypes.any,
+  onGetFeaturedPosts: PropTypes.func.isRequired
+};
 
 const mapStateToProps = (state) => ({
   posts: state.featuredPosts.posts,
