@@ -3,16 +3,30 @@ import actionTypes from '../type';
 
 export const getFeaturedPosts = () => {
   return async (dispatch) => {
-    let post = await axios.get('/top-posts');
-    const { data } = post;
-    if (data.response) {
-      dispatch({
-        type: actionTypes.GET_FEATURED_POSTS,
-        payload: {
-          posts: data.response,
-          error: null
+    try {
+      let post = await axios.get('/top-posts');
+      const { data } = post;
+      if (data.response) {
+        dispatch({
+          type: actionTypes.GET_FEATURED_POSTS,
+          payload: {
+            posts: data.response,
+            error: null
+          }
+        });
+      }
+    } catch (e) {
+      if ('response' in e && e.response) {
+        if (e.response.data.status && e.response.data.error) {
+          dispatch({
+            type: actionTypes.GET_FEATURED_POSTS,
+            payload: {
+              posts: null,
+              error: e.response.data.error
+            }
+          });
         }
-      });
+      }
     }
   };
 };
