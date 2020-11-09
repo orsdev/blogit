@@ -2,7 +2,8 @@ const actionTypes = {
   LOGIN_USER: 'LOGIN_USER',
   LOGOUT_USER: 'LOGOUT_USER',
   SET_USER: 'SET_USER',
-  REMOVE_USER: 'REMOVE_USER'
+  REMOVE_USER: 'REMOVE_USER',
+  GET_FEATURED_POSTS: 'GET_FEATURED_POSTS'
 };
 
 export default actionTypes;
