@@ -26,6 +26,14 @@ export const getFeaturedPosts = () => {
             }
           });
         }
+      } else {
+        dispatch({
+          type: actionTypes.GET_FEATURED_POSTS,
+          payload: {
+            posts: null,
+            error: 'Failed to get Posts! Try again.'
+          }
+        });
       }
     }
   };
