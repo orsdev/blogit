@@ -4,10 +4,7 @@ import actionTypes from '../type';
 export const login = (userData) => {
   return async (dispatch) => {
     try {
-      let user = await axios.post(
-        'http://localhost:5000/login',
-        JSON.stringify(userData)
-      );
+      let user = await axios.post('/login', JSON.stringify(userData));
 
       const { data } = user;
       if (data.response) {
