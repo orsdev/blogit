@@ -31,7 +31,7 @@ export const getFeaturedPosts = () => {
           type: actionTypes.GET_FEATURED_POSTS,
           payload: {
             posts: null,
-            error: 'Failed to get Posts! Try again.'
+            error: 'Failed to get Posts! Please refresh your browser.'
           }
         });
       }
