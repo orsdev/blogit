@@ -21,8 +21,12 @@ function Featured({ posts, error, onGetFeaturedPosts }) {
         <header className="featured-header px-2">
           {posts.slice(0, 1).map((post) => {
             return (
-              <article key={post._id} className="featured-header-article">
-                <h5 className="featured-header-article-title">{post.title}</h5>
+              <article
+                key={post._id}
+                className="featured-header-article">
+                <h5 className="featured-header-article-title">
+                  {post.title}
+                </h5>
                 <span className="featured-header-article-author">
                   {post.user.username} -
                 </span>
@@ -31,7 +35,9 @@ function Featured({ posts, error, onGetFeaturedPosts }) {
                 </span>
                 <span className="featured-header-article-comment ml-3">
                   <b>
-                    <i className="fa fa-comment-o pr-1" aria-hidden="true"></i>
+                    <i
+                      className="fa fa-comment-o pr-1"
+                      aria-hidden="true"></i>
                   </b>
                   <b>{post.comments.length}</b>
                 </span>
@@ -40,7 +46,9 @@ function Featured({ posts, error, onGetFeaturedPosts }) {
                   alt="Article Cover"
                   className="featured-header-article-cover my-3"
                 />
-                <p className="featured-header-article-text">{post.body}</p>
+                <p className="featured-header-article-text">
+                  {`${post.body.substring(0, 100)}...`}
+                </p>
                 <Link
                   to="/post/:12334"
                   className="btn btn-danger btn-lg rounded-0">
@@ -52,10 +60,12 @@ function Featured({ posts, error, onGetFeaturedPosts }) {
           <aside className="featured-header-aside">
             {posts.slice(1).map((post) => {
               return (
-                <article key={post._id} className="featured-header-aside-card">
+                <article
+                  key={post._id}
+                  className="featured-header-aside-card">
                   <img src={post.coverImage} alt="Article Cover" />
                   <p className="feature-header-aside-card-text mt-1">
-                    {post.body}
+                    {`${post.body.substring(0, 100)}...`}
                   </p>
                   <span className="featured-header-article-author">
                     {post.user.username} -
@@ -81,7 +91,8 @@ function Featured({ posts, error, onGetFeaturedPosts }) {
           <Skeleton active={true} loading={true}>
             <article className="featured-header-article">
               <h5 className="featured-header-article-title">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                Lorem ipsum dolor sit amet consectetur adipisicing
+                elit.
               </h5>
               <span className="featured-header-article-author">
                 Enola Holmes -
@@ -94,15 +105,18 @@ function Featured({ posts, error, onGetFeaturedPosts }) {
                 <b>32</b>
               </span>
               <span className="featured-header-article-comment">
-                <i className="fa fa-comment-o pr-2" aria-hidden="true"></i>
+                <i
+                  className="fa fa-comment-o pr-2"
+                  aria-hidden="true"></i>
                 <b>12</b>
               </span>
               <p className="featured-header-article-text">
-                Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quam,
-                ex voluptates repellat nihil, inventore praesentium a non
-                reprehenderit, mollitia velit voluptatibus animi nostrum ab.
-                Cupiditate voluptate repudiandae quas tenetur odio modi ducimus?
-                Omnis maxime, beatae quas repellat distinctio quasi face...
+                Lorem ipsum dolor sit amet consectetur, adipisicing
+                elit. Quam, ex voluptates repellat nihil, inventore
+                praesentium a non reprehenderit, mollitia velit
+                voluptatibus animi nostrum ab. Cupiditate voluptate
+                repudiandae quas tenetur odio modi ducimus? Omnis
+                maxime, beatae quas repellat distinctio quasi face...
               </p>
               <Link
                 to="/post/:12334"
@@ -115,19 +129,25 @@ function Featured({ posts, error, onGetFeaturedPosts }) {
             <Skeleton active={true} loading={true}>
               <article className="featured-header-aside-card">
                 <p className="feature-header-aside-card-text">
-                  Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-                  Nemo, ducimus...
+                  Lorem ipsum dolor sit, amet consectetur adipisicing
+                  elit. Nemo, ducimus...
                 </p>
-                <span className="featured-header-aside-author">Timberly -</span>
+                <span className="featured-header-aside-author">
+                  Timberly -
+                </span>
                 <span className="featured-header-aside-date">
                   {new Date().toDateString()}
                 </span>
                 <span className="featured-header-aside-view mx-4">
-                  <i className="fa fa-eye pr-2" aria-hidden="true"></i>
+                  <i
+                    className="fa fa-eye pr-2"
+                    aria-hidden="true"></i>
                   <b>10</b>
                 </span>
                 <span className="featured-header-aside-comment">
-                  <i className="fa fa-comment-o pr-2" aria-hidden="true"></i>
+                  <i
+                    className="fa fa-comment-o pr-2"
+                    aria-hidden="true"></i>
                   <b>120</b>
                 </span>
               </article>
@@ -135,8 +155,8 @@ function Featured({ posts, error, onGetFeaturedPosts }) {
             <Skeleton active={true} loading={true}>
               <article className="featured-header-aside-card">
                 <p className="feature-header-aside-card-text">
-                  Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-                  Nemo, ducimus...
+                  Lorem ipsum dolor sit, amet consectetur adipisicing
+                  elit. Nemo, ducimus...
                 </p>
                 <span className="featured-header-aside-author">
                   Donnie Yen -
@@ -145,11 +165,15 @@ function Featured({ posts, error, onGetFeaturedPosts }) {
                   {new Date().toDateString()}
                 </span>
                 <span className="featured-header-aside-view mx-4">
-                  <i className="fa fa-eye pr-2" aria-hidden="true"></i>
+                  <i
+                    className="fa fa-eye pr-2"
+                    aria-hidden="true"></i>
                   <b>2</b>
                 </span>
                 <span className="featured-header-aside-comment">
-                  <i className="fa fa-comment-o pr-2" aria-hidden="true"></i>
+                  <i
+                    className="fa fa-comment-o pr-2"
+                    aria-hidden="true"></i>
                   <b>1</b>
                 </span>
               </article>
