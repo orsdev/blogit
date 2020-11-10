@@ -8,7 +8,14 @@ import PropTypes from 'prop-types';
 import { login } from '../redux/actions/login.action';
 import { setUser } from '../redux/actions/user.action';
 
-const Login = ({ token, error, user, onLogin, onSetUser, history }) => {
+const Login = ({
+  token,
+  error,
+  user,
+  onLogin,
+  onSetUser,
+  history
+}) => {
   const [disableButton, setDisableButton] = useState(false);
   const [buttonLoading, setButtonLoading] = useState(false);
 
@@ -69,7 +76,12 @@ const Login = ({ token, error, user, onLogin, onSetUser, history }) => {
           <Form name="login" onFinish={onFinish}>
             {error && typeof error === 'string' ? (
               <div className="login-body-error mx-auto mb-4">
-                <Alert message={error} type="error" showIcon closable />
+                <Alert
+                  message={error}
+                  type="error"
+                  showIcon
+                  closable
+                />
               </div>
             ) : null}
             <h6>Login your Account!</h6>
