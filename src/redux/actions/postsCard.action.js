@@ -1,17 +1,27 @@
 import axios from '../../axios/axiosInstance';
 import actionTypes from '../type';
 
-export const getPosts = () => {
+export const getPosts = (url) => {
   return async (dispatch) => {
+    dispatch({
+      type: actionTypes.GET_POSTS,
+      payload: {
+        posts: null,
+        error: null,
+        loading: true
+      }
+    });
+
     try {
-      let post = await axios.get('/posts');
+      let post = await axios.get(url);
       const { data } = post;
       if (data.response) {
         dispatch({
           type: actionTypes.GET_POSTS,
           payload: {
             posts: data.response,
-            error: null
+            error: null,
+            loading: false
           }
         });
       }
@@ -22,7 +32,8 @@ export const getPosts = () => {
             type: actionTypes.GET_POSTS,
             payload: {
               posts: null,
-              error: e.response.data.error
+              error: e.response.data.error,
+              loading: true
             }
           });
         }
@@ -31,7 +42,9 @@ export const getPosts = () => {
           type: actionTypes.GET_POSTS,
           payload: {
             posts: null,
-            error: 'Failed to get Posts! Please refresh your browser.'
+            error:
+              'Failed to get Posts! Please refresh your browser.',
+            loading: true
           }
         });
       }

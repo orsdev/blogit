@@ -2,7 +2,8 @@ import actionTypes from '../type';
 
 const initialState = {
   posts: null,
-  error: null
+  error: null,
+  loading: false
 };
 
 const postsCardReducer = (state = initialState, action) => {
@@ -11,7 +12,8 @@ const postsCardReducer = (state = initialState, action) => {
       return {
         ...state,
         posts: action.payload.posts,
-        error: action.payload.error
+        error: action.payload.error,
+        loading: action.payload.loading
       };
     default:
       return state;
