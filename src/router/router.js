@@ -14,7 +14,7 @@ function Router() {
         <Route exact path="/" component={Home} />
         <Route exact path="/login" component={Login} />
         <Route exact path="/join" component={Signup} />
-        <Route exact path="/post/:title" component={SinglePost} />
+        <Route exact path="/post/:id" component={SinglePost} />
         <Route path="/500" component={Page500} />
         <Route component={Page404} />
       </Switch>
