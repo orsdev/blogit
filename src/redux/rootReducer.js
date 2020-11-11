@@ -1,5 +1,6 @@
 import { combineReducers } from 'redux';
 import loginReducer from './reducers/login.reducer';
+import signupReducer from './reducers/signup.reducer';
 import userReducer from './reducers/user.reducer';
 import featuredReducer from './reducers/featured.reducer';
 import postsCardReducer from './reducers/postsCard.reducer';
@@ -8,6 +9,7 @@ import errorReducer from './reducers/error.reducer';
 
 const rootReducer = combineReducers({
   login: loginReducer,
+  signup: signupReducer,
   user: userReducer,
   featuredPosts: featuredReducer,
   postsCard: postsCardReducer,
