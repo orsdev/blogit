@@ -8,14 +8,7 @@ import PropTypes from 'prop-types';
 import { login } from '../redux/actions/login.action';
 import { setUser } from '../redux/actions/user.action';
 
-const Login = ({
-  token,
-  error,
-  user,
-  onLogin,
-  onSetUser,
-  history
-}) => {
+const Login = ({ token, error, onLogin, onSetUser, history }) => {
   const [disableButton, setDisableButton] = useState(false);
   const [buttonLoading, setButtonLoading] = useState(false);
 
@@ -50,11 +43,9 @@ const Login = ({
   }, [token]);
 
   useEffect(() => {
-    if (error) {
-      // update states
-      setDisableButton(false);
-      setButtonLoading(false);
-    }
+    // update states
+    setDisableButton(false);
+    setButtonLoading(false);
   }, [error]);
 
   const onFinish = (values) => {
@@ -76,12 +67,7 @@ const Login = ({
           <Form name="login" onFinish={onFinish}>
             {error && typeof error === 'string' ? (
               <div className="login-body-error mx-auto mb-4">
-                <Alert
-                  message={error}
-                  type="error"
-                  showIcon
-                  closable
-                />
+                <Alert message={error} type="error" showIcon />
               </div>
             ) : null}
             <h6>Login your Account!</h6>
@@ -150,20 +136,18 @@ const Login = ({
 Login.propTypes = {
   token: PropTypes.string,
   error: PropTypes.any,
-  user: PropTypes.any,
   onLogin: PropTypes.func.isRequired,
   onSetUser: PropTypes.func.isRequired
 };
 
 const mapStateToProps = (state) => ({
   token: state.login.token,
-  error: state.login.error,
-  user: state.user.user
+  error: state.login.error
 });
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    onLogin: (email, password) => dispatch(login(email, password)),
+    onLogin: (userData) => dispatch(login(userData)),
     onSetUser: (user) => dispatch(setUser(user))
   };
 };
