@@ -18,6 +18,14 @@ export const login = (userData) => {
       }
     } catch (e) {
       if ('response' in e && e.response) {
+        dispatch({
+          type: actionTypes.LOGIN_USER,
+          payload: {
+            token: null,
+            error: null
+          }
+        });
+
         if (e.response.data.status && e.response.data.error) {
           dispatch({
             type: actionTypes.LOGIN_USER,
