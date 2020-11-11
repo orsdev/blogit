@@ -10,18 +10,14 @@ export const getPaginationLength = () => {
         dispatch({
           type: actionTypes.GET_PAGINATION_LENGTH,
           payload: {
-            pagination: data.response,
-            error: null
+            pagination: data.response
           }
         });
       }
     } catch (e) {
       dispatch({
-        type: actionTypes.GET_PAGINATION_LENGTH,
-        payload: {
-          pagination: null,
-          error: 'Failed to get Posts! Please refresh your browser.'
-        }
+        type: actionTypes.SET_ERROR,
+        payload: 'Failed to get Posts! Please refresh your browser.'
       });
     }
   };

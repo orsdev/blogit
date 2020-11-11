@@ -1,8 +1,7 @@
 import actionTypes from '../type';
 
 const initialState = {
-  pagination: null,
-  error: null
+  pagination: null
 };
 
 const paginationLength = (state = initialState, action) => {
@@ -10,8 +9,7 @@ const paginationLength = (state = initialState, action) => {
     case actionTypes.GET_PAGINATION_LENGTH:
       return {
         ...state,
-        pagination: action.payload.pagination,
-        error: action.payload.error
+        pagination: action.payload.pagination
       };
     default:
       return state;
