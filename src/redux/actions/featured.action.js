@@ -16,25 +16,10 @@ export const getFeaturedPosts = () => {
         });
       }
     } catch (e) {
-      if ('response' in e && e.response) {
-        if (e.response.data.status && e.response.data.error) {
-          dispatch({
-            type: actionTypes.GET_FEATURED_POSTS,
-            payload: {
-              posts: null,
-              error: e.response.data.error
-            }
-          });
-        }
-      } else {
-        dispatch({
-          type: actionTypes.GET_FEATURED_POSTS,
-          payload: {
-            posts: null,
-            error: 'Failed to get Posts! Please refresh your browser.'
-          }
-        });
-      }
+      dispatch({
+        type: actionTypes.SET_ERROR,
+        payload: 'Failed to get Posts! Please refresh your browser.'
+      });
     }
   };
 };
