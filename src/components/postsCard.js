@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { Skeleton } from 'antd';
 import { getPosts } from '../redux/actions/postsCard.action';
@@ -22,7 +23,7 @@ function PostsCard({ loading, posts, onGetPosts }) {
                 <article key={post._id} className="blogCards-article">
                   <img src={post.coverImage} alt="Article Cover" />
                   <p className="blogCards-article-text mb-1">
-                    {`${post.body.substring(0, 100)}...`}
+                    {`${post.body.substring(0, 80)}...`}
                   </p>
                   <span className="blogCards-article-author">
                     {post.user.username} -
@@ -38,6 +39,11 @@ function PostsCard({ loading, posts, onGetPosts }) {
                     </b>
                     <b>{post.comments.length}</b>
                   </span>
+                  <Link
+                    to={`/post/${post._id}`}
+                    className="btn btn-lg w-100 text-left rounded-0 px-0 text-danger d-block">
+                    Read More
+                  </Link>
                 </article>
               );
             })}
