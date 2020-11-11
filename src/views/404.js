@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Result, Button } from 'antd';
+import { Result } from 'antd';
 
 function Page404() {
   return (
