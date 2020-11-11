@@ -7,7 +7,6 @@ export const getPosts = (url) => {
       type: actionTypes.GET_POSTS,
       payload: {
         posts: null,
-        error: null,
         loading: true
       }
     });
@@ -20,34 +19,15 @@ export const getPosts = (url) => {
           type: actionTypes.GET_POSTS,
           payload: {
             posts: data.response,
-            error: null,
             loading: false
           }
         });
       }
     } catch (e) {
-      if ('response' in e && e.response) {
-        if (e.response.data.status && e.response.data.error) {
-          dispatch({
-            type: actionTypes.GET_POSTS,
-            payload: {
-              posts: null,
-              error: e.response.data.error,
-              loading: true
-            }
-          });
-        }
-      } else {
-        dispatch({
-          type: actionTypes.GET_POSTS,
-          payload: {
-            posts: null,
-            error:
-              'Failed to get Posts! Please refresh your browser.',
-            loading: true
-          }
-        });
-      }
+      dispatch({
+        type: actionTypes.SET_ERROR,
+        payload: 'Failed to get Posts! Please refresh your browser.'
+      });
     }
   };
 };
