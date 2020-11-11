@@ -1,10 +1,10 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { Alert, Skeleton } from 'antd';
+import { Skeleton } from 'antd';
 import { getPosts } from '../redux/actions/postsCard.action';
 
-function PostsCard({ loading, posts, error, onGetPosts }) {
+function PostsCard({ loading, posts, onGetPosts }) {
   useEffect(() => {
     // call dispatch function
     onGetPosts('/posts');
@@ -13,13 +13,8 @@ function PostsCard({ loading, posts, error, onGetPosts }) {
 
   return (
     <>
-      {error ? (
-        <div className="mx-auto mt-5">
-          <Alert message={error} type="error" showIcon closable />
-        </div>
-      ) : null}
       <section className="blogCards py-3">
-        {!error && posts && posts.length ? (
+        {posts && posts.length ? (
           <>
             <h5 className="blogCards-title p-2">Must Read</h5>
             {posts.map((post) => {
@@ -137,14 +132,12 @@ function PostsCard({ loading, posts, error, onGetPosts }) {
 
 PostsCard.propTypes = {
   posts: PropTypes.any,
-  error: PropTypes.any,
   loading: PropTypes.bool,
   onGetPosts: PropTypes.func.isRequired
 };
 
 const mapStateToProps = (state) => ({
   posts: state.postsCard.posts,
-  error: state.postsCard.error,
   loading: state.postsCard.loading
 });
 
