@@ -1,23 +1,18 @@
 import React, { useEffect } from 'react';
-import { Alert, Skeleton } from 'antd';
+import { Skeleton } from 'antd';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { getFeaturedPosts } from '../redux/actions/featured.action';
 
-function Featured({ posts, error, onGetFeaturedPosts }) {
+function Featured({ posts, onGetFeaturedPosts }) {
   useEffect(() => {
     onGetFeaturedPosts();
     // eslint-disable-next-line
   }, []);
   return (
     <section className="featured">
-      {error ? (
-        <div className="featured-error mx-auto mb-4">
-          <Alert message={error} type="error" showIcon closable />
-        </div>
-      ) : null}
-      {!error && posts && posts.length ? (
+      {posts && posts.length ? (
         <header className="featured-header px-2">
           {posts.slice(0, 1).map((post) => {
             return (
@@ -187,13 +182,11 @@ function Featured({ posts, error, onGetFeaturedPosts }) {
 
 Featured.propTypes = {
   posts: PropTypes.any,
-  error: PropTypes.any,
   onGetFeaturedPosts: PropTypes.func.isRequired
 };
 
 const mapStateToProps = (state) => ({
-  posts: state.featuredPosts.posts,
-  error: state.featuredPosts.error
+  posts: state.featuredPosts.posts
 });
 
 const mapDispatchToProps = (dispatch) => {
