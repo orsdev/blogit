@@ -16,14 +16,17 @@ function Pagination({
 
   useEffect(() => {
     onGetPaginationLength();
+    // eslint-disable-next-line
   }, []);
 
   useEffect(() => {
     setPaginationValue(pagination);
+    // eslint-disable-next-line
   }, [pagination]);
 
   useEffect(() => {
     setUrl(`/posts?page=${queryValue}`);
+    // eslint-disable-next-line
   }, [queryValue]);
 
   useEffect(() => {
@@ -31,6 +34,7 @@ function Pagination({
       // call dispatch function
       onGetPosts(url);
     }
+    // eslint-disable-next-line
   }, [url]);
 
   function getPreviousPage() {
@@ -79,14 +83,11 @@ function Pagination({
 
 Pagination.propTypes = {
   pagination: PropTypes.any,
-  error: PropTypes.any,
   onGetPosts: PropTypes.func.isRequired,
   onGetPaginationLength: PropTypes.func.isRequired
 };
 
 const mapStateToProps = (state) => ({
-  posts: state.postsCard.posts,
-  error: state.postsCard.error,
   pagination: state.paginationLength.pagination
 });
 
