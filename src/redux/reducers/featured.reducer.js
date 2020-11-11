@@ -1,8 +1,7 @@
 import actionTypes from '../type';
 
 const initialState = {
-  posts: null,
-  error: null
+  posts: null
 };
 
 const featuredReducer = (state = initialState, action) => {
@@ -10,8 +9,7 @@ const featuredReducer = (state = initialState, action) => {
     case actionTypes.GET_FEATURED_POSTS:
       return {
         ...state,
-        posts: action.payload.posts,
-        error: action.payload.error
+        posts: action.payload.posts
       };
     default:
       return state;

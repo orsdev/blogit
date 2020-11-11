@@ -10,8 +10,7 @@ export const getFeaturedPosts = () => {
         dispatch({
           type: actionTypes.GET_FEATURED_POSTS,
           payload: {
-            posts: data.response,
-            error: null
+            posts: data.response
           }
         });
       }
