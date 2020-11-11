@@ -4,6 +4,7 @@ import signupReducer from './reducers/signup.reducer';
 import userReducer from './reducers/user.reducer';
 import featuredReducer from './reducers/featured.reducer';
 import postsCardReducer from './reducers/postsCard.reducer';
+import singlePostReducer from './reducers/singlePost.reducer';
 import paginationLengthReducer from './reducers/paginationLength.reducer';
 import errorReducer from './reducers/error.reducer';
 
@@ -13,6 +14,7 @@ const rootReducer = combineReducers({
   user: userReducer,
   featuredPosts: featuredReducer,
   postsCard: postsCardReducer,
+  singlePost: singlePostReducer,
   paginationLength: paginationLengthReducer,
   error: errorReducer
 });
