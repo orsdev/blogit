@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { Skeleton } from 'antd';
+import { Skeleton, Divider } from 'antd';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
@@ -10,6 +10,7 @@ function Featured({ posts, onGetFeaturedPosts }) {
     onGetFeaturedPosts();
     // eslint-disable-next-line
   }, []);
+
   return (
     <section className="featured">
       {posts && posts.length ? (
@@ -45,7 +46,7 @@ function Featured({ posts, onGetFeaturedPosts }) {
                   {`${post.body.substring(0, 100)}...`}
                 </p>
                 <Link
-                  to="/post/:12334"
+                  to={`/post/${post._id}`}
                   className="btn btn-danger btn-lg rounded-0">
                   Read More
                 </Link>
@@ -58,10 +59,11 @@ function Featured({ posts, onGetFeaturedPosts }) {
                 <article
                   key={post._id}
                   className="featured-header-aside-card">
-                  <img src={post.coverImage} alt="Article Cover" />
-                  <p className="feature-header-aside-card-text mt-1">
-                    {`${post.body.substring(0, 100)}...`}
-                  </p>
+                  <img
+                    src={post.coverImage}
+                    alt="Article Cover"
+                    className="d-block"
+                  />
                   <span className="featured-header-article-author">
                     {post.user.username} -
                   </span>
@@ -76,6 +78,15 @@ function Featured({ posts, onGetFeaturedPosts }) {
                     </b>
                     <b>{post.comments.length}</b>
                   </span>
+                  <p className="feature-header-aside-card-text mt-1">
+                    {`${post.body.substring(0, 100)}...`}
+                  </p>
+                  <Link
+                    to={`/post/${post._id}`}
+                    className="btn btn-lg rounded-0 mx-0 px-0 text-danger">
+                    Read More
+                  </Link>
+                  <Divider />
                 </article>
               );
             })}
