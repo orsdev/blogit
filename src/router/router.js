@@ -5,6 +5,7 @@ import Signup from '../components/signup';
 import SinglePost from '../views/singlePost';
 import Home from '../views/home';
 import Page404 from '../views/404';
+import Page500 from '../views/500';
 
 function Router() {
   return (
@@ -14,6 +15,7 @@ function Router() {
         <Route exact path="/login" component={Login} />
         <Route exact path="/join" component={Signup} />
         <Route exact path="/post/:title" component={SinglePost} />
+        <Route path="/500" component={Page500} />
         <Route component={Page404} />
       </Switch>
     </>
