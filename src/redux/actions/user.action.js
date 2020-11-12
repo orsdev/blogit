@@ -5,6 +5,6 @@ export const setUser = (user) => ({
   payload: user
 });
 
-export const removeUser = (user) => ({
+export const removeUser = () => ({
   type: actionTypes.REMOVE_USER
 });
