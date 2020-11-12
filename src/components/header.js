@@ -1,14 +1,19 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import cookie from 'react-cookies';
 import { Link } from 'react-router-dom';
 import { logOut } from '../redux/actions/login.action';
 import { removeUser } from '../redux/actions/user.action';
+import { deleteToken } from '../redux/actions/token.action';
 
-function Header({ user, onLogOut, onRemoveUser }) {
+function Header({ user, onLogOut, onRemoveUser, onDeleteToken }) {
   const logOutUser = () => {
+    //clear token from cookie
+    cookie.remove('token', { path: '/' });
     onLogOut();
     onRemoveUser();
+    onDeleteToken();
   };
 
   return (
@@ -48,7 +53,8 @@ function Header({ user, onLogOut, onRemoveUser }) {
 Header.propTypes = {
   user: PropTypes.any,
   onLogOut: PropTypes.func.isRequired,
-  onRemoveUser: PropTypes.func.isRequired
+  onRemoveUser: PropTypes.func.isRequired,
+  onDeleteToken: PropTypes.func.isRequired
 };
 
 const mapStateToProps = (state) => ({
@@ -58,7 +64,8 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => {
   return {
     onLogOut: () => dispatch(logOut()),
-    onRemoveUser: () => dispatch(removeUser())
+    onRemoveUser: () => dispatch(removeUser()),
+    onDeleteToken: () => dispatch(deleteToken())
   };
 };
 
