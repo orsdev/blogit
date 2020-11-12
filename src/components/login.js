@@ -7,13 +7,24 @@ import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { login } from '../redux/actions/login.action';
 import { setUser } from '../redux/actions/user.action';
+import { setToken } from '../redux/actions/token.action';
 
-const Login = ({ token, error, onLogin, onSetUser, history }) => {
+const Login = ({
+  token,
+  error,
+  onLogin,
+  onSetUser,
+  onSetToken,
+  history
+}) => {
   const [disableButton, setDisableButton] = useState(false);
   const [buttonLoading, setButtonLoading] = useState(false);
 
   useEffect(() => {
     if (token) {
+      // call dispatch function
+      onSetToken(token);
+
       // update states
       setDisableButton(false);
       setButtonLoading(false);
@@ -137,7 +148,8 @@ Login.propTypes = {
   token: PropTypes.string,
   error: PropTypes.any,
   onLogin: PropTypes.func.isRequired,
-  onSetUser: PropTypes.func.isRequired
+  onSetUser: PropTypes.func.isRequired,
+  onSetToken: PropTypes.func.isRequired
 };
 
 const mapStateToProps = (state) => ({
@@ -148,6 +160,7 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => {
   return {
     onLogin: (userData) => dispatch(login(userData)),
+    onSetToken: (token) => dispatch(setToken(token)),
     onSetUser: (user) => dispatch(setUser(user))
   };
 };
