@@ -1,122 +1,267 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { Comment, Form, Button, Input } from 'antd';
-import Mood from '../assets/images/mood.jpg';
+import axios from '../axios/axiosInstance';
+import {
+  Modal,
+  Comment,
+  Form,
+  Button,
+  Input,
+  Skeleton,
+  Divider
+} from 'antd';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
+import { getSinglePost } from '../redux/actions/singlePost.action';
 
 const { TextArea } = Input;
 
-function SinglePost() {
-  const [submitting, setSubmitting] = useState(false);
-  const [postComments, setPostComments] = useState(null);
+function SinglePost({
+  match: {
+    params: { id }
+  },
+  token,
+  post,
+  user,
+  onGetSinglePost
+}) {
+  const [disableButton, setDisableButton] = useState(false);
+  const [buttonLoading, setButtonLoading] = useState(false);
+  const [isCommented, setIsCommented] = useState(false);
+  const [error, setError] = useState(null);
+  const [modalVisible, setModalVisible] = useState(false);
+  const [form] = Form.useForm();
+
+  useEffect(() => {
+    if (id) {
+      onGetSinglePost(id);
+    }
+    // eslint-disable-next-line
+  }, []);
+
+  /* 
+  get post again if user comment successfully
+  */
+  useEffect(() => {
+    if (isCommented && id) {
+      onGetSinglePost(id);
+
+      // update state
+      setIsCommented(false);
+    }
+    // eslint-disable-next-line
+  }, [isCommented]);
+
+  useEffect(() => {
+    if (error) {
+      setModalVisible(true);
+    }
+
+    // update states
+    setDisableButton(false);
+    setButtonLoading(false);
+    // eslint-disable-next-line
+  }, [error]);
+
+  function closeModal() {
+    // update states
+    setModalVisible(false);
+    setError(null);
+  }
 
   function onFinish(values) {
-    setSubmitting(true);
+    // update states
+    setDisableButton(true);
+    setButtonLoading(true);
+
+    if (!(user && token)) {
+      setError(null);
+      setError('You are not logged in.');
+    }
+
+    if (user && token) {
+      const config = {
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      };
+
+      const body = JSON.stringify({
+        ...values,
+        postID: post._id
+      });
+
+      // post comment
+      axios
+        .post('/comment', body, config)
+        .then(function (res) {
+          // reset form
+          form.resetFields();
+
+          // update states
+          setDisableButton(false);
+          setButtonLoading(false);
+          setIsCommented(true);
+        })
+        .catch(function (e) {
+          // update states
+          setDisableButton(false);
+          setButtonLoading(false);
+
+          if ('response' in e && e.response) {
+            if (e.response.data.status && e.response.data.error) {
+              // update states
+              setError(e.response.data.error);
+              setModalVisible(true);
+            }
+          }
+        });
+    }
   }
 
   return (
     <section className="singlePost">
-      <Link exact to="/" className="singlePost-logo">
+      {error ? (
+        <Modal
+          className="single-post-modal"
+          visible={modalVisible}
+          onCancel={closeModal}
+          onOK={false}>
+          <p>{error}</p>
+        </Modal>
+      ) : null}
+      <Link to="/" className="singlePost-logo">
         Blogit
       </Link>
       <div className="singlePost-body mx-auto">
-        <article className="singlePost-body-article">
-          <h5 className="singlePost-body-article-topic font-weight-bold">
-            Lorem, ipsum dolor sit amet consectetur adipisicing.
-          </h5>
-          <span className="singlePost-body-article-date">
-            {' '}
-            Posted on -{new Date().toDateString()}
-          </span>
-          <span className="singlePost-body-article-author"> By Timberly</span>
-          <span className="singlePost-body-articlee-view mx-4">
-            <i className="fa fa-eye pr-2" aria-hidden="true"></i>
-            <b>10</b>
-          </span>
-          <img
-            src={Mood}
-            alt="Article Cover"
-            className="singlePost-body-article-cover"
-          />
-          <p className="singlePost-body-article-text">
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Dolores
-            quae autem quibusdam? Numquam esse laudantium ipsam voluptatibus
-            totam sint id distinctio, et quas repellendus ex deleniti alias eos,
-            ipsum recusandae voluptates aut natus dicta asperiores ad illo quos
-            est quibusdam ratione! Iste consequuntur quod aliquam, neque quidem
-            doloremque at praesentium nobis placeat doloribus illum molestias
-            tempora reprehenderit provident rem dignissimos mollitia cumque
-            laudantium vitae nulla! Fugit, omnis mollitia esse repellat itaque
-            reprehenderit perferendis sed et qui. Nesciunt fuga consectetur
-            provident iste quaerat porro odio rerum consequatur laboriosam
-            expedita voluptas blanditiis, voluptatibus unde quisquam. Amet,
-            ipsam, ut qui, placeat quo blanditiis molestiae odit dignissimos
-            mollitia accusantium dolores asperiores eveniet alias corporis atque
-            explicabo omnis? Exercitationem, iste id. Fugit quaerat atque
-            sapiente dolor incidunt quis quo a aliquam doloribus officiis
-            aspernatur quos repellendus iusto architecto ex consectetur unde,
-            ipsam voluptas delectus, debitis similique, sunt doloremque
-            voluptatibus! Esse vitae doloremque facere quam tempora.
-          </p>
-        </article>
+        {post && !isCommented ? (
+          <article className="singlePost-body-article">
+            <h5 className="singlePost-body-article-topic font-weight-bold">
+              {post.title}
+            </h5>
+            <img
+              src={post.coverImage}
+              alt="Article Cover"
+              className="singlePost-body-article-cover d-block"
+            />
+
+            <span className="singlePost-body-article-date mr-1">
+              Posted on - {new Date(post.createdAt).toDateString()}
+            </span>
+            <span className="singlePost-body-article-author text-danger">
+              By {post.user.username}
+            </span>
+            <p className="singlePost-body-article-text">
+              {post.body}
+            </p>
+          </article>
+        ) : (
+          <Skeleton active={true} loading={true}>
+            <article className="singlePost-body-article">
+              <h5 className="singlePost-body-article-topic font-weight-bold">
+                Lorem, ipsum dolor sit amet consectetur adipisicing.
+              </h5>
+              <span className="singlePost-body-article-date mr-1">
+                Posted on -{new Date().toDateString()}
+              </span>
+              <span className="singlePost-body-article-author text-danger">
+                By Timberly
+              </span>
+              <p className="singlePost-body-article-text">
+                Lorem, ipsum dolor sit amet consectetur adipisicing
+                elit.
+              </p>
+            </article>
+          </Skeleton>
+        )}
       </div>
       <div className="singlePost-footer mx-auto">
         <div className="singlePost-footer-form">
-          <Form name="comment-form" onFinish={onFinish}>
-            <Form.Item
-              name="comment"
-              rules={[
-                {
-                  required: true,
-                },
-              ]}>
-              <TextArea rows={6} />
-            </Form.Item>
-            <Form.Item>
-              <Button
-                htmlType="submit"
-                loading={submitting}
-                // onClick={handleSubmit}
-                type="primary">
-                Add Comment
-              </Button>
-            </Form.Item>
-          </Form>
+          <Skeleton active={true} loading={post ? false : true}>
+            <Form name="comment-form" form={form} onFinish={onFinish}>
+              <Form.Item
+                name="comment"
+                rules={[
+                  {
+                    required: true
+                  }
+                ]}>
+                <TextArea rows={6} />
+              </Form.Item>
+              <Form.Item>
+                <Button
+                  htmlType="submit"
+                  loading={buttonLoading}
+                  disabled={disableButton}
+                  type="primary">
+                  Add Comment
+                </Button>
+              </Form.Item>
+            </Form>
+          </Skeleton>
         </div>
         <div className="singlePost-footer-comments">
-          <Comment
-            author={<h4 className="h4 font-weight-bold">Han Solo </h4>}
-            content={
-              <p>
-                We supply a series of design principles, practical patterns and
-                high quality design resources (Sketch and Axure), to help people
-                create their product prototypes beautifully and efficiently.
-              </p>
-            }
-            datetime={
-              <span className="singlePost-footer-comments-date font-weight-bold">
-                {new Date().toDateString()}
-              </span>
-            }
-          />
-          <Comment
-            author={<h4 className="h4 font-weight-bold">Han Solo </h4>}
-            content={
-              <p>
-                We supply a series of design principles, practical patterns and
-                high quality design resources (Sketch and Axure), to help people
-                create their product prototypes beautifully and efficiently.
-              </p>
-            }
-            datetime={
-              <span className="singlePost-footer-comments-date font-weight-bold">
-                {new Date().toDateString()}
-              </span>
-            }
-          />
+          <h2 className="display-4 mt-5">
+            Comments
+            {post ? (
+              <b className="ml-1">({post.comments.length})</b>
+            ) : (
+              ''
+            )}
+          </h2>
+          <Divider />
+          <Skeleton active={true} loading={post ? false : true}>
+            {post &&
+              post.comments.map((comment, index) => {
+                return (
+                  <Comment
+                    key={`${post._id}${index}${post.createdAt}`}
+                    author={
+                      <h4 className="h4 font-weight-bold">
+                        {comment.username}
+                      </h4>
+                    }
+                    content={
+                      <>
+                        <p>{comment.body}</p>
+                        <Divider />
+                      </>
+                    }
+                    datetime={
+                      <span className="singlePost-footer-comments-date font-weight-bold">
+                        {new Date(comment.createdAt).toDateString()}
+                      </span>
+                    }
+                  />
+                );
+              })}
+          </Skeleton>
         </div>
       </div>
     </section>
   );
 }
 
-export default SinglePost;
+SinglePost.propTypes = {
+  posts: PropTypes.object,
+  user: PropTypes.object,
+  token: PropTypes.string,
+  onGetSinglePost: PropTypes.func.isRequired
+};
+
+const mapStateToProps = (state) => ({
+  post: state.singlePost.post,
+  token: state.token,
+  user: state.user.user
+});
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    onGetSinglePost: (id) => dispatch(getSinglePost(id))
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(SinglePost);
