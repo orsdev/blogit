@@ -40,7 +40,7 @@ const Signup = ({ error, token, onSignup }) => {
   return (
     <>
       <section className="signup">
-        <Link to="/" className="signup-logo">
+        <Link to="/" className="logo">
           Blogit
         </Link>
         <div className="signup-body mb-5">

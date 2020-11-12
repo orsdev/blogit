@@ -71,7 +71,7 @@ const Login = ({
   return (
     <>
       <section className="login">
-        <Link to="/" className="login-logo">
+        <Link to="/" className="logo">
           Blogit
         </Link>
         <div className="login-body">

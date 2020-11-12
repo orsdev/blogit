@@ -130,7 +130,7 @@ function SinglePost({
           <p>{error}</p>
         </Modal>
       ) : null}
-      <Link to="/" className="singlePost-logo">
+      <Link to="/" className="logo">
         Blogit
       </Link>
       <div className="singlePost-body mx-auto">

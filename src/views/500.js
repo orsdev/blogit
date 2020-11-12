@@ -13,7 +13,7 @@ function Page500({ error, history }) {
 
   return (
     <section className="page500">
-      <h5 className="page500-logo">Blogit</h5>
+      <h5 className="logo">Blogit</h5>
       <Result
         status="500"
         title="500"

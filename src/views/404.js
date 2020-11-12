@@ -5,7 +5,7 @@ import { Result } from 'antd';
 function Page404() {
   return (
     <section className="page404">
-      <Link exact to="/" className="page404-logo">
+      <Link to="/" className="logo">
         Blogit
       </Link>
       <Result
