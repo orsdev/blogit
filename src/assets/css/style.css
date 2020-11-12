@@ -303,6 +303,13 @@ article span {
   color: #ad8302;
 }
 
+.single-post-modal .ant-btn-primary {
+  display: none;
+}
+.single-post-modal .ant-modal-close {
+  display: none;
+}
+
 @media (max-width: 700px) {
   .singlePost-body {
     width: 90%;
@@ -311,13 +318,11 @@ article span {
   }
   .singlePost-footer-form {
     width: 99%;
-    outline: 2px solid red;
   }
 }
 @media (max-width: 480px) {
   .singlePost-footer-comments {
     width: 95%;
-    outline: 2px solid red;
   }
 }
 .page404 {
