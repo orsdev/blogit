@@ -3,16 +3,8 @@ import actionTypes from '../type';
 
 export const getSinglePost = (postID) => {
   return async (dispatch) => {
-    dispatch({
-      type: actionTypes.GET_SINGLE_POST,
-      payload: {
-        post: null
-      }
-    });
-
     try {
       let post = await axios.get(`/post/${postID}`);
-
       const { data } = post;
       if (data.response) {
         dispatch({
