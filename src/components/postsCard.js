@@ -17,7 +17,7 @@ function PostsCard({ loading, posts, onGetPosts }) {
       <section className="blogCards py-3">
         {posts && posts.length ? (
           <>
-            <h5 className="blogCards-title p-2">Must Read</h5>
+            <h5 className="blogCards-header p-2">Must Read</h5>
             {posts.map((post) => {
               return (
                 <article key={post._id} className="blogCards-article">

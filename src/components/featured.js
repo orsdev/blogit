@@ -20,23 +20,25 @@ function Featured({ posts, onGetFeaturedPosts }) {
               <article
                 key={post._id}
                 className="featured-header-article">
-                <h5 className="featured-header-article-title">
+                <h5 className="featured-header-article-title mb-1">
                   {post.title}
                 </h5>
-                <span className="featured-header-article-author">
-                  {post.user.username} -
-                </span>
-                <span className="featured-header-article-date">
-                  {new Date(post.createdAt).toDateString()}
-                </span>
-                <span className="featured-header-article-comment ml-3">
-                  <b>
-                    <i
-                      className="fa fa-comment-o pr-1"
-                      aria-hidden="true"></i>
-                  </b>
-                  <b>{post.comments.length}</b>
-                </span>
+                <div className="mt-0 py-0">
+                  <span className="featured-header-article-author">
+                    {post.user.username} -
+                  </span>
+                  <span className="featured-header-article-date">
+                    {new Date(post.createdAt).toDateString()}
+                  </span>
+                  <span className="featured-header-article-comment ml-3">
+                    <b>
+                      <i
+                        className="fa fa-comment-o pr-1"
+                        aria-hidden="true"></i>
+                    </b>
+                    <b>{post.comments.length}</b>
+                  </span>
+                </div>
                 <img
                   src={post.coverImage}
                   alt="Article Cover"
@@ -59,6 +61,9 @@ function Featured({ posts, onGetFeaturedPosts }) {
                 <article
                   key={post._id}
                   className="featured-header-aside-card">
+                  <h5 className="featured-header-aside-title mb-3">
+                    {post.title}
+                  </h5>
                   <img
                     src={post.coverImage}
                     alt="Article Cover"
