@@ -1,0 +1,63 @@
+.new-post {
+  padding: 5px;
+  overflow-x: hidden;
+
+  &-body {
+    width: 100%;
+    margin-top: 10px;
+    margin-bottom: 80px;
+    text-align: left;
+  }
+
+  h6 {
+    width: 100%;
+    margin-bottom: 20px;
+  }
+
+  form {
+    width: 400px;
+    margin: auto;
+
+    label {
+      width: 100%;
+      display: inline-block;
+      margin: 0;
+      margin-top: 10px;
+      padding: 0;
+      font-size: 1.5rem;
+      font-weight: bold;
+    }
+
+    .ant-row {
+      flex-flow: column;
+    }
+
+    input {
+      height: 40px;
+    }
+
+    .ant-col {
+      text-align: left;
+      margin: 0;
+      padding: 0;
+    }
+  }
+}
+
+.new-post-modal {
+  .ant-btn-primary {
+    display: none;
+  }
+
+  .ant-modal-close {
+    display: none;
+  }
+}
+
+@media (max-width: 500px) {
+  .new-post {
+    form {
+      width: 95%;
+    }
+  }
+}

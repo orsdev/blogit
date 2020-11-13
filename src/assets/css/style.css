@@ -306,6 +306,57 @@ article span {
     width: 95%;
   }
 }
+.new-post {
+  padding: 5px;
+  overflow-x: hidden;
+}
+.new-post-body {
+  width: 100%;
+  margin-top: 10px;
+  margin-bottom: 80px;
+  text-align: left;
+}
+.new-post h6 {
+  width: 100%;
+  margin-bottom: 20px;
+}
+.new-post form {
+  width: 400px;
+  margin: auto;
+}
+.new-post form label {
+  width: 100%;
+  display: inline-block;
+  margin: 0;
+  margin-top: 10px;
+  padding: 0;
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+.new-post form .ant-row {
+  flex-flow: column;
+}
+.new-post form input {
+  height: 40px;
+}
+.new-post form .ant-col {
+  text-align: left;
+  margin: 0;
+  padding: 0;
+}
+
+.new-post-modal .ant-btn-primary {
+  display: none;
+}
+.new-post-modal .ant-modal-close {
+  display: none;
+}
+
+@media (max-width: 500px) {
+  .new-post form {
+    width: 95%;
+  }
+}
 .page404 {
   padding: 5px;
   margin-bottom: 30px;
