@@ -103,6 +103,9 @@ article span {
   height: 400px;
   object-fit: cover;
 }
+.featured-header-article-title {
+  width: 90%;
+}
 .featured-header-article-text {
   width: 80%;
 }
