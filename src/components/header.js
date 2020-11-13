@@ -18,8 +18,12 @@ function Header({ user, onLogOut, onRemoveUser, onDeleteToken }) {
 
   return (
     <header className="header text-center">
-      <h1 className="logo">Blogit</h1>
-      <p className="header-time">{new Date().toDateString()}</p>
+      <h1 className="logo">
+        Blogit
+        <span className="header-time">
+          {new Date().toDateString()}
+        </span>
+      </h1>
       <div className="header-auth text-right">
         {user ? (
           <button
