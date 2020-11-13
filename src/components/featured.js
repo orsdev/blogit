@@ -20,9 +20,9 @@ function Featured({ posts, onGetFeaturedPosts }) {
               <article
                 key={post._id}
                 className="featured-header-article">
-                <h5 className="featured-header-article-title mb-1">
+                <h6 className="featured-header-article-title mb-1">
                   {post.title}
-                </h5>
+                </h6>
                 <div className="mt-0 py-0">
                   <span className="featured-header-article-author">
                     {post.user.username} -
@@ -61,9 +61,9 @@ function Featured({ posts, onGetFeaturedPosts }) {
                 <article
                   key={post._id}
                   className="featured-header-aside-card">
-                  <h5 className="featured-header-aside-title mb-3">
+                  <h6 className="featured-header-aside-title mb-3">
                     {post.title}
-                  </h5>
+                  </h6>
                   <img
                     src={post.coverImage}
                     alt="Article Cover"

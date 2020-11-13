@@ -4,14 +4,14 @@
   overflow-x: hidden;
   &-header {
     display: flex;
-    align-items: middle;
+    align-items: flex-start;
     justify-content: center;
     width: 100%;
     padding: 3px 10px;
 
     &-article {
-      width: calc(100% - 400px);
-      margin: auto;
+      width: calc(100% - 420px);
+      margin-right: 20px;
 
       &-cover {
         display: inline-block;

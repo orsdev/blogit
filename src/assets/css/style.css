@@ -94,14 +94,14 @@ article span {
 }
 .featured-header {
   display: flex;
-  align-items: middle;
+  align-items: flex-start;
   justify-content: center;
   width: 100%;
   padding: 3px 10px;
 }
 .featured-header-article {
-  width: calc(100% - 400px);
-  margin: auto;
+  width: calc(100% - 420px);
+  margin-right: 20px;
 }
 .featured-header-article-cover {
   display: inline-block;

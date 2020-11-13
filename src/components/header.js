@@ -20,7 +20,7 @@ function Header({ user, onLogOut, onRemoveUser, onDeleteToken }) {
     <header className="header text-center">
       <h1 className="logo">
         Blogit
-        <span className="header-time d-block">
+        <span className="header-time d-block mt-4">
           {new Date().toDateString()}
         </span>
       </h1>
